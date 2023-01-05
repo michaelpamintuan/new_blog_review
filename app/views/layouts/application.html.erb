@@ -14,26 +14,17 @@
   <body class="bg-gray-200">
 
 <div class="min-h-full">
-  <%= render 'navigation' %>
-  <%= render 'header' %>
+  <% if !is_devise_class? %>
+    <%= render 'navigation' %>
+    <%= render 'header' %>
+  <% end %>
 
   <main>
-    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+    <div class="<%= main_or_devise_container_class %>">
       <%= yield %>
     </div>
   </main>
 </div>
 
-
-
-
-
-
-
-
-
-
-    <main class="container mx-auto mt-28 px-5 flex">
-    </main>
   </body>
 </html>
