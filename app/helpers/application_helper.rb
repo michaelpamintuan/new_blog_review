@@ -21,9 +21,9 @@ module ApplicationHelper
 
     def navigation_active_state cname
         if cname == controller_name
-            'bg-gray-900 text-white'
+          'bg-gray-900 text-white'
         else
-            'text-gray-300 hover:bg-gray-700 hover:text-white'
+          'text-gray-300 hover:bg-gray-700 hover:text-white'
         end
     end
 end
