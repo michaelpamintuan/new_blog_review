@@ -1,37 +1,11 @@
-<div class="bg-white p-4 shadow border rounded-md mt-4" id="<%= dom_id post %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= post.title %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Content:</strong>
-    <%= post.content %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Video url:</strong>
-    <%= post.video_url.html_safe %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Image url:</strong>
-    <%= post.image_url %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Status:</strong>
-    <%= post.status %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= post.user_id %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Post", post, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
-    <%= link_to 'Edit', edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-yellow-500 text-white inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
+<tr>
+  <td class="border-b p-4 pl-8 text-slate-500 dark:text-slate-600"><%= post.title %></td>
+  <td class="border-b p-4 text-slate-500 dark:text-slate-600"><%= post.user.full_name_or_email%></td>
+  <td class="border-b p-4 pr-8 text-slate-500 dark:text-slate-600"><%= post.status.titleize %></td>
+  <td class="border-b p-4 pr-8 text-slate-500 dark:text-slate-600">
+    <div class="flex items-center">
+      <%= link_to 'Edit', edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-yellow-500 text-white inline-block font-medium" %>
+      <%= button_to 'Delete', post_path(post), method: :delete, class: "ml-3 rounded-lg py-3 px-5 bg-red-600 text-white font-medium" %>
+    </div>
+  </td>
+</tr>

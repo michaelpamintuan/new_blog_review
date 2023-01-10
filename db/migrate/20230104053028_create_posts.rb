@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.text :content
       t.string :video_url
       t.string :image_url
-      t.string :status, default: 'draft'
+      t.string :status
       t.references :user, null: false, foreign_key: true
       t.timestamps
     end

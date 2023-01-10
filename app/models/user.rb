@@ -5,4 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts
+
+  def full_name_or_email
+    if first_name.present? && last_name.present?
+      "#{first_name} #{last_name}"
+    else
+      email
+    end
+  end
 end
