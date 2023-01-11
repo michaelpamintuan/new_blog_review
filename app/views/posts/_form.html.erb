@@ -28,8 +28,24 @@
 
   <div class="my-5">
     <%= form.label :image_url %>
-    <%= form.text_field :image_url, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.file_field :image_url,multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
+
+  <% if post.image_url.present? %>
+  <div class="my-5 flex justify-between">
+    <% post.image_url.each do |img| %>
+      <div class="mx-12">
+      <%= image_tag img.url, style: 'display: inline-block:', class: 'my-5' %>
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :author %>
+    <%= form.text_field :author, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
 
   <div class="my-5">
     <%= form.label :status %>
