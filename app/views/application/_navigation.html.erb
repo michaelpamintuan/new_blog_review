@@ -53,10 +53,10 @@
               <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
 
               <% if current_user %>
-              <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-sm text-gray-700" %>
-            <% end %>
-      
-              </div>
+                <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-sm text-gray-700" %>
+              <% end %>
+              
+            </div>
           </div>
         </div>
       <% end %>
@@ -73,20 +73,6 @@
         <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <!--
           Heroicon name: outline/x-mark
 
