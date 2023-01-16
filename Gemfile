@@ -80,3 +80,8 @@ gem "tailwindcss-rails", "~> 2.0"
 
 
 gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
+
+gem 'friendly_id', '~> 5.4.0' #https://github.com/norman/friendly_id
+
+gem 'pusher'
+

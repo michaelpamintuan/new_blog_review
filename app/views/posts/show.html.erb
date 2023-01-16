@@ -36,7 +36,7 @@
     <!-- Product info -->
     <div class="px-4 pt-10 pb-16 ">
       <div class="lg:col-span-2 lg:pr-8">
-        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl"><%= @post.title %></h1>
+        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl"><%= @post.title %> <br>by: <%= @post.next.creator %></h1>
       </div>
 
 
@@ -45,28 +45,62 @@
         <h3 class="sr-only">Description</h3>
 
         <div class="space-y-6">
-          <p class="text-base text-gray-900"><%= @post.content %></p>
+          <p class="text-base text-gray-900">
+          <%= @post.content %>
+          </p>
         </div>
       </div>
 
 
 
 
-          <h1>Related Posts</h1>
           <div class="grid grid-cols-2 gap-2">
             <% if Post.previous(@post.id).present? %>
-              <div class="previous-post">
-                <h2> Previous Post </h2>
-                <%= image_tag @post.image_url.url %>
-              </div>
+              <%= link_to post_path(@post.previous) do %>
+                <div class="previous-post border shadow-md rounded-lg">
+                  <h2 class="p-2"> Previous Post </h2>
+                  <%= image_tag @post.previous.image_url.url %>
+                  <h5 class="text-sm p-2"><%= @post.previous.title %> <br>-by: <%= @post.previous.creator %></h5>
+                </div>
+              <% end %>
             <% end %>
             <% if Post.next(@post.id).present? %>
-              <div class="next-post">
-                <h2> Next Post </h2>
-                <%= image_tag @post.image_url.url %>
+              <%= link_to post_path(@post.next) do %>
+                <div class="next-post border shadow-md rounded-lg">
+                  <h2 class="p-2"> Next Post </h2>
+                  <%= image_tag @post.next.image_url.url %>
+                  <h5 class="text-sm p-2"><%= @post.next.title %> <br>-by: <%= @post.next.creator %></h5>
                 </div>
+              <% end %>
             <% end %>
-      </div>
+          </div>
+        <div class="w-full border-t border-gray-200 my-6">
+          <h1 class="text-lg my-6">Comments</h1>
+          <%= form_with scope: :comment, url: '/comment/store', local: true do |form| %>
+            <div class="form-group">
+                <%= form.text_area :comment, class: 'w-full' %>
+                <%= form.submit "Submit Comment", class: "rounded-md bg-green-500 text-white py-3 px-5 my-3" %>
+                <%= form.hidden_field :post_id, value: @post.id %>
+            </div>
+            <% end %>
+
+        </div>
+        <div class="w-full my-10" id="comment_section">
+          <% @post.comments.each do |comment| %>
+            <div class="border border-gray-200 shadow py-3 px-5 my-3">
+            <%= comment.comment %>
+            </div>
+          <% end %>
+        </div>
     </div>
   </div>
 </div>
+
+<script>
+var channel = pusher.subscribe('comment-channel');
+channel.bind('new-comment', function(data) {
+    let comment = data.comment;
+    var div = document.getElementById('comment_section');
+    div.innerHTML += `<p> ${comment} </p>`;
+});
+</script>  
