@@ -88,7 +88,8 @@
         <div class="w-full my-10" id="comment_section">
           <% @post.comments.each do |comment| %>
             <div class="border border-gray-200 shadow py-3 px-5 my-3">
-            <%= comment.comment %>
+            <div><%= comment.comment %></div>
+            <span class="text-sm text-gray-500"><%= comment.created_at.strftime("%d-%m-%Y") %></span>
             </div>
           <% end %>
         </div>
