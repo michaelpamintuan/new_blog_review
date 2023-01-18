@@ -85,3 +85,5 @@ gem 'friendly_id', '~> 5.4.0' #https://github.com/norman/friendly_id
 
 gem 'pusher'
 
+gem "ahoy_matey"
+
